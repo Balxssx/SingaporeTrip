@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Return Flight Ticket UI</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500&display=swap');
+
+    body {
+        font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+        background-color: #f4f5f7;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin: 0;
+        color: #333333;
+    }
+
+    .ticket-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        display: flex;
+        gap: 48px;
+        max-width: 700px;
+        width: 100%;
+    }
+
+    /* Left Column: Airline Info */
+    .airline-section {
+        display: flex;
+        flex-direction: column;
+        min-width: 110px;
+    }
+
+    .logo-text {
+        font-family: 'Brush Script MT', 'Comic Sans MS', cursive;
+        color: #e32526;
+        font-size: 42px;
+        line-height: 1;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+        transform: scaleY(1.1);
+    }
+
+    .flight-brand {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a4a4a;
+        margin-bottom: 2px;
+    }
+
+    .flight-number {
+        font-size: 14px;
+        color: #4a4a4a;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .flight-class {
+        font-size: 14px;
+        color: #888888;
+    }
+
+    /* Right Column: Route & Timeline */
+    .route-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date-header {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+
+    .date-en {
+        font-weight: 600;
+        color: #4a4a4a;
+    }
+
+    .date-th {
+        color: #888888;
+        font-weight: 400;
+    }
+
+    .timeline {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    /* The vertical line connecting the dots */
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 62.5px;
+        top: 8px;
+        bottom: 8px;
+        width: 1px;
+        background-color: #e0e0e0;
+        z-index: 1;
+    }
+
+    .timeline-item {
+        display: grid;
+        grid-template-columns: 50px 26px 1fr;
+        align-items: flex-start;
+        position: relative;
+        z-index: 2;
+    }
+
+    .time {
+        font-size: 18px;
+        font-weight: 600;
+        color: #555555;
+        margin-top: -2px;
+    }
+
+    .node-container {
+        display: flex;
+        justify-content: center;
+        padding-top: 4px;
+        background: #fff; /* to cover the line behind the dot */
+    }
+
+    .node {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .node.solid {
+        background-color: #3fa1e8;
+    }
+
+    .node.outline {
+        background-color: #ffffff;
+        border: 2px solid #3fa1e8;
+        box-sizing: border-box;
+    }
+
+    .location-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .loc-main {
+        font-size: 16px;
+        font-weight: 600;
+        color: #4a4a4a;
+        margin-bottom: 2px;
+    }
+
+    .loc-main .th-text {
+        font-weight: 400;
+        color: #888888;
+    }
+
+    .loc-sub {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a4a4a;
+    }
+
+    .loc-sub.th-text {
+        font-weight: 400;
+        color: #888888;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 500px) {
+        .ticket-card {
+            flex-direction: column;
+            gap: 24px;
+            padding: 24px;
+        }
+        .airline-section {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 16px;
+        }
+        .logo-text {
+            margin-bottom: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="ticket-card">
+    
+    <div class="airline-section">
+        <div class="logo-text">AirAsia</div>
+        <div class="flight-brand">Thai AirAsia</div>
+        <div class="flight-number">FD-356</div>
+        <div class="flight-class">Economy</div>
+    </div>
+
+    <div class="route-section">
+        <div class="date-header">
+            <span class="date-en">Sunday, 26 April 2026</span>
+            <span class="date-th">/ วันอาทิตย์, 26 เมษายน 2026</span>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time">14:40</div>
+                <div class="node-container">
+                    <div class="node solid"></div>
+                </div>
+                <div class="location-details">
+                    <div class="loc-main">Singapore (SIN) <span class="th-text">/ สิงคโปร์</span></div>
+                    <div class="loc-sub">Changi Intl - 4</div>
+                    <div class="loc-sub th-text">ชางงี - อาคารผู้โดยสาร 4</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time">16:20</div>
+                <div class="node-container">
+                    <div class="node outline"></div>
+                </div>
+                <div class="location-details">
+                    <div class="loc-main">Bangkok (DMK) <span class="th-text">/ กรุงเทพ</span></div>
+                    <div class="loc-sub">Don Mueang International Airport - 1</div>
+                    <div class="loc-sub th-text">ดอนเมือง - อาคารผู้โดยสาร 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
