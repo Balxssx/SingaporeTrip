@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Ticket UI</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #f4f5f7;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin: 0;
+        color: #16263b;
+    }
+
+    .ticket-container {
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* Top Card Styles */
+    .flight-info-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .airline-logo {
+        width: 48px;
+        height: 48px;
+        background-color: #e32636;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 11px;
+        letter-spacing: -0.5px;
+    }
+
+    .flight-details-top {
+        display: flex;
+        gap: 32px;
+    }
+
+    .info-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .label {
+        font-size: 14px;
+        color: #7b838c;
+        font-weight: 400;
+    }
+
+    .value {
+        font-size: 16px;
+        font-weight: 700;
+        color: #16263b;
+    }
+
+    /* Timeline Styles */
+    .timeline {
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 11px;
+        top: 24px;
+        bottom: 24px;
+        width: 1px;
+        border-left: 2px dashed #e2e8f0;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 32px;
+    }
+    
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-icon {
+        position: absolute;
+        left: -40px;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        background-color: #16263b;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .timeline-icon svg {
+        width: 14px;
+        height: 14px;
+        fill: white;
+    }
+
+    /* Content Styles */
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+    }
+
+    .airport-code {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0b1f35;
+        margin: 0;
+    }
+
+    .datetime {
+        text-align: right;
+    }
+
+    .date {
+        font-size: 13px;
+        color: #7b838c;
+        margin-bottom: 2px;
+    }
+
+    .time {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0b1f35;
+        line-height: 1;
+    }
+
+    .airport-name {
+        font-size: 15px;
+        color: #16263b;
+        margin-bottom: 20px;
+    }
+
+    .grid-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .grid-info .label {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .grid-info .value {
+        font-size: 15px;
+    }
+
+    .footer-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #7b838c;
+        border-top: 1px solid #f0f2f5;
+        padding-top: 16px;
+    }
+
+    .footer-info.no-border {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .footer-info svg {
+        width: 14px;
+        height: 14px;
+        fill: #7b838c;
+    }
+
+    .aot-logo {
+        color: #0a4d94;
+        font-weight: 800;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 12px;
+    }
+
+    .aot-logo svg {
+        width: 16px;
+        height: 10px;
+        fill: #0aa2e3;
+    }
+
+    .link {
+        color: #3b82f6;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="ticket-container">
+    <div class="card flight-info-header">
+        <div class="airline-logo">AirAsia</div>
+        <div class="flight-details-top">
+            <div class="info-group">
+                <span class="label">Flight No.</span>
+                <span class="value">FD 357</span>
+            </div>
+            <div class="info-group">
+                <span class="label">Operated By</span>
+                <span class="value">THAI AIR ASIA CO.LTD.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2.5,19H21.5V21H2.5V19M22.07,9.64C21.86,8.84 21.03,8.36 20.23,8.58L14.92,10L8,3.57L6.09,4.08L10.23,11.25L5.26,12.58L3.29,11.04L1.84,11.43L3.66,14.59L21.43,10.74C22.23,10.53 22.27,10.43 22.07,9.64Z"/></svg>
+                </div>
+                
+                <div class="header-row">
+                    <h2 class="airport-code">DON MUEANG (DMK)</h2>
+                    <div class="datetime">
+                        <div class="date">24 Apr 2026</div>
+                        <div class="time">10:40</div>
+                    </div>
+                </div>
+                <div class="airport-name">Don Mueang International<br>Airport, Thailand</div>
+                
+                <div class="grid-info">
+                    <div class="info-group">
+                        <span class="label">Terminal</span>
+                        <span class="value">1</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="label">Entrance</span>
+                        <span class="value">-</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="label">Check-In Row</span>
+                        <span class="value">-</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="label">Boarding Gate</span>
+                        <span class="value">-</span>
+                    </div>
+                </div>
+                
+                <div class="footer-info no-border">
+                    <svg viewBox="0 0 24 24"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/></svg>
+                    <span>Information by</span>
+                    <span class="aot-logo">
+                        <svg viewBox="0 0 24 24"><path d="M12,2L22,8L12,14L2,8L12,2Z" /></svg>
+                        AOT
+                    </span>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="padding-top: 32px; border-top: 1px solid #f0f2f5;">
+                <div class="timeline-icon" style="top: 32px;">
+                    <svg viewBox="0 0 24 24"><path d="M2.5,19H21.5V21H2.5V19M9.68,13.27L14.03,14.43L19.34,15.85C20.14,16.06 20.96,15.59 21.18,14.79C21.39,14 20.92,13.17 20.12,12.95L14.81,11.53L12.05,2.53L10.12,2.05L11.45,11L5.45,9.4L3.13,6.61L1.83,6.9L3.43,11L2.27,15.35L9.68,13.27Z"/></svg>
+                </div>
+
+                <div class="header-row">
+                    <h2 class="airport-code">Singapore (SIN)</h2>
+                    <div class="datetime">
+                        <div class="date">24 Apr 2026</div>
+                        <div class="time">14:30</div>
+                    </div>
+                </div>
+                <div class="airport-name">Singapore Changi Airport, Singapore</div>
+                
+                <div class="grid-info">
+                    <div class="info-group">
+                        <span class="label">Arrival Gate</span>
+                        <span class="value">-</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="label">Belt</span>
+                        <span class="value">-</span>
+                    </div>
+                </div>
+                
+                <div class="footer-info">
+                    <svg viewBox="0 0 24 24"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/></svg>
+                    <span>Information from External Source</span>
+                    <span class="link">Learn More</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
